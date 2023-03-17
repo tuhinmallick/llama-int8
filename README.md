@@ -1,5 +1,7 @@
 # LLaMA: INT8 edition
 
+**:warning: 2023-03-16: [LLaMA is now supported in Huggingface `transformers`](https://github.com/huggingface/transformers/commit/0041be5b3d1b9a5e1443e1825d7d80f6dfadcdaa), which has out-of-the-box int8 support. I'll keep this repo up as a means of space-efficiently testing LLaMA weights packaged as `state_dict`s, but for serious inference or training workloads I encourage users to migrate to `transformers`. Instructions for converting weights can be found [here](https://huggingface.co/docs/transformers/main/en/model_doc/llama).**
+
 This is a fork of the LLaMA code that runs LLaMA-13B
 comfortably within 24 GiB of RAM.
 It relies almost entirely on the `bitsandbytes` and `LLM.int8()` work of Tim Dettmers.
