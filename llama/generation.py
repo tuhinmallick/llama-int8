@@ -30,8 +30,8 @@ class LLaMA:
 
         prompt_tokens = [self.tokenizer.encode(x, bos=True, eos=False) for x in prompts]
 
-        min_prompt_size = min([len(t) for t in prompt_tokens])
-        max_prompt_size = max([len(t) for t in prompt_tokens])
+        min_prompt_size = min(len(t) for t in prompt_tokens)
+        max_prompt_size = max(len(t) for t in prompt_tokens)
 
         total_len = min(params.max_seq_len, max_gen_len + max_prompt_size)
 
@@ -109,10 +109,10 @@ def apply_advanced_repetition_penalty(
     input_ids, scores, penalty_range, penalty_slope, penalty
 ):
     penalty_range = int(penalty_range)
-    clipped_penalty_range = min(input_ids.shape[-1], penalty_range)
-
     if penalty != 1.0:
         if penalty_range > 0:
+            clipped_penalty_range = min(input_ids.shape[-1], penalty_range)
+
             if clipped_penalty_range < input_ids.shape[1]:
                 input_ids = input_ids[..., -clipped_penalty_range:]
 
